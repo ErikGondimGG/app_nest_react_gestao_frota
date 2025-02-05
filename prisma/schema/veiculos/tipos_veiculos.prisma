@@ -1,0 +1,12 @@
+model tipos_veiculos {
+  id         Int      @id @default(autoincrement())
+  descricao  String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  deleted_at DateTime
+
+  veiculos veiculos[]
+
+  @@map("tipos_veiculos")
+  @@schema("Base api_bot_wpp")
+}
