@@ -15,6 +15,9 @@ lerna-debug.log*
 #readme
 /erik
 
+#prisma migrations
+/prisma/migrations
+
 # OS
 .DS_Store
 
