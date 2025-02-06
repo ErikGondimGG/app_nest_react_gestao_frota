@@ -1,19 +1,19 @@
 model veiculos {
-  id               Int      @id @default(autoincrement())
-  placa            String
-  marca            String
-  modelo           String
-  ano_fabricacao   Int
-  ano_modelo       Int
-  cor              String
-  tag              String
-  km               Int
-  hr               Int
-  capacidade_carga Int
-  tipo_veiculo_id  Int
-  created_at       DateTime @default(now())
-  updated_at       DateTime @default(now())
-  deleted_at       DateTime
+  id               Int       @id @default(autoincrement())
+  placa            String?
+  marca            String?
+  modelo           String?
+  ano_fabricacao   Int?
+  ano_modelo       Int?
+  cor              String?
+  tag              String?
+  km               Int?
+  hr               Int?
+  capacidade_carga Int?
+  tipo_veiculo_id  Int       @default(0)
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @default(now())
+  deleted_at       DateTime?
 
   tipos_veiculos tipos_veiculos @relation(fields: [tipo_veiculo_id], references: [id])
 

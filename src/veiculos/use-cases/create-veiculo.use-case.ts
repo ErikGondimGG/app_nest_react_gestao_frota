@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { CreateVeiculosInputDto } from '../dtos/create-veiculo-input.dto';
+import { CreateUpdateVeiculosInputDto } from '../dtos/create-update-veiculo-input.dto';
 import { VeiculosRepository } from '../repositories/veiculos.repository';
 
 interface ICreateVeiculosInputDto {
-  createVeiculosInputDto: CreateVeiculosInputDto;
+  createVeiculosInputDto: CreateUpdateVeiculosInputDto;
 }
 
 @Injectable()
