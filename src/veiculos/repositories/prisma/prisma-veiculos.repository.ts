@@ -3,6 +3,7 @@ import { Prisma } from '@prisma/client';
 import { createPaginator, PaginatedResult } from 'prisma-pagination';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { getNewDateTime } from 'src/shared/utils/date-utils';
+import { CreateUpdateVeiculosInputDto } from 'src/veiculos/dtos/create-update-veiculo-input.dto';
 import { VeiculosInputDto } from 'src/veiculos/dtos/veiculos-input.dto';
 import { VeiculosOutputDto } from 'src/veiculos/types/veiculos-output.type';
 import { VeiculosRepository } from '../veiculos.repository';
@@ -13,7 +14,7 @@ export class PrismaVeiculosRepository implements VeiculosRepository {
 
   private readonly prismaVeiculos = this.prismaService.veiculos;
 
-  async create(data: VeiculosInputDto): Promise<VeiculosOutputDto> {
+  async create(data: CreateUpdateVeiculosInputDto): Promise<VeiculosOutputDto> {
     const resultedCreate = await this.prismaVeiculos.create({
       data: {
         placa: data.placa,
@@ -29,7 +30,7 @@ export class PrismaVeiculosRepository implements VeiculosRepository {
         tipo_veiculo_id: data.tipo_veiculo_id,
         created_at: getNewDateTime(),
         updated_at: getNewDateTime(),
-        deleted_at: data.deleted_at,
+        deleted_at: null,
       },
     });
 
@@ -52,11 +53,18 @@ export class PrismaVeiculosRepository implements VeiculosRepository {
       perPage: filters.perPage ?? 10,
     });
 
-    const resultedRecords = await paginate(
-      this.prismaVeiculos.findMany({
-        where,
-      }),
-    );
+    const resultedRecords = await paginate<
+      VeiculosOutputDto,
+      Prisma.veiculosFindManyArgs
+    >(this.prismaVeiculos, {
+      where,
+      include: {
+        tipos_veiculos: true,
+      },
+      orderBy: {
+        id: 'desc',
+      },
+    });
 
     return resultedRecords;
   }

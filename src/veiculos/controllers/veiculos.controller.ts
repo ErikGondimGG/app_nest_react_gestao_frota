@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { PaginatedResult } from 'prisma-pagination';
-import { CreateVeiculosInputDto } from '../dtos/create-veiculo-input.dto';
+import { CreateUpdateVeiculosInputDto } from '../dtos/create-update-veiculo-input.dto';
 import { VeiculosInputDto } from '../dtos/veiculos-input.dto';
 import { VeiculosOutputDto } from '../types/veiculos-output.type';
 import { CreateVeiculoUseCase } from '../use-cases/create-veiculo.use-case';
@@ -30,7 +30,7 @@ export class VeiculosController {
 
   @Post()
   create(
-    @Body() createVeiculosInputDto: CreateVeiculosInputDto,
+    @Body() createVeiculosInputDto: CreateUpdateVeiculosInputDto,
   ): Promise<VeiculosOutputDto> {
     return this.createVeiculoUseCase.execute({ createVeiculosInputDto });
   }
@@ -45,9 +45,9 @@ export class VeiculosController {
   @Put(':id')
   update(
     @Param('id') id: number,
-    @Body() veiculosInputDto: VeiculosInputDto,
+    @Body() updateVeiculosInputDto: CreateUpdateVeiculosInputDto,
   ): Promise<VeiculosOutputDto> {
-    return this.updateVeiculoUseCase.execute({ id, veiculosInputDto });
+    return this.updateVeiculoUseCase.execute({ id, updateVeiculosInputDto });
   }
 
   @Delete(':id')
