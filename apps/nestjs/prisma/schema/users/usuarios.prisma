@@ -1,0 +1,14 @@
+model usuarios {
+  id              Int       @id @default(autoincrement())
+  name            String
+  email           String
+  password        String
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @default(now())
+  deleted_at      DateTime?
+
+  contatos_wpp    contatos_wpp[]
+
+  @@map("usuarios")
+  @@schema("Base api_bot_wpp")
+}

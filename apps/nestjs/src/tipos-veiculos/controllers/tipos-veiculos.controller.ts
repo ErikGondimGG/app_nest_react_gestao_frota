@@ -8,7 +8,7 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { CreateUpdateTiposVeiculosInputDto } from '../dtos/create-update-tipos-veiculos-input.dto';
 import { TiposVeiculosInputDto } from '../dtos/tipos-veiculos-input.dto';
 import { CreateTiposVeiculosUseCase } from '../use-cases/create-tipo-veiculo.use-case';
@@ -27,6 +27,18 @@ export class TiposVeiculosController {
   ) {}
 
   @Post()
+  @ApiBody({
+    type: CreateUpdateTiposVeiculosInputDto,
+    description: 'Create a new tipos-veiculos',
+    required: true,
+    examples: {
+      descricao: {
+        value: {
+          descricao: 'Carro',
+        },
+      },
+    },
+  })
   async create(
     @Body() createTiposVeiculosInputDto: CreateUpdateTiposVeiculosInputDto,
   ) {
