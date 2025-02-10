@@ -1,0 +1,14 @@
+model contatos_wpp {
+  id    Int @id @default(autoincrement())
+  name  String
+  phone String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  deleted_at DateTime?
+  usuarios_id Int @default(1) // ID do usuário associado (padrão: 1)
+
+  usuarios    usuarios @relation(fields: [usuarios_id], references: [id])
+
+  @@map("contatos_wpp")
+  @@schema("Base api_bot_wpp")
+}
