@@ -31,7 +31,6 @@ export class UsuariosInputDto {
 
   @IsBoolean()
   @IsOptional()
-  @Transform(({ value }) => (value === 'true' ? true : false))
   isAdmin?: boolean;
 
   @IsString()

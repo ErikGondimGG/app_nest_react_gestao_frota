@@ -45,7 +45,7 @@ export class PrismaVeiculosRepository implements VeiculosRepository {
     const where: Prisma.veiculosFindManyArgs['where'] = {};
 
     for (const key in filters) {
-      if (filters[key] !== 'page' && filters[key] !== 'limit') {
+      if (key !== 'page' && key !== 'perPage') {
         where[key] = filters[key];
       }
     }

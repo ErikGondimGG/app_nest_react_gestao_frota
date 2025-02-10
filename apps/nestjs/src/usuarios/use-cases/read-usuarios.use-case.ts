@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PaginatedResult } from 'prisma-pagination';
-import { UsuariosInputDto } from '../dtos/usuarios-input.dtos';
+import { UsuariosInputDto } from '../dtos/usuarios-input.dto';
 import { UsuariosRepository } from '../repositories/usuarios.repository';
 import { UsuariosOutputType } from '../types/usuarios-output.type';
 

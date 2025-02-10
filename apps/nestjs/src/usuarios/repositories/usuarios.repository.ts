@@ -1,6 +1,6 @@
 import { PaginatedResult } from 'prisma-pagination';
 import { CreateUsuariosInputDto } from '../dtos/create-usuarios-input.dto';
-import { UsuariosInputDto } from '../dtos/usuarios-input.dtos';
+import { UsuariosInputDto } from '../dtos/usuarios-input.dto';
 import { UsuariosOutputType } from '../types/usuarios-output.type';
 
 export abstract class UsuariosRepository {

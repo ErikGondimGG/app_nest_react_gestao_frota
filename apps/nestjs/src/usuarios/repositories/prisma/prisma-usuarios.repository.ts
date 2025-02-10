@@ -4,7 +4,7 @@ import { createPaginator, PaginatedResult } from 'prisma-pagination';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { getNewDateTime } from 'src/shared/utils/date-utils';
 import { CreateUsuariosInputDto } from 'src/usuarios/dtos/create-usuarios-input.dto';
-import { UsuariosInputDto } from 'src/usuarios/dtos/usuarios-input.dtos';
+import { UsuariosInputDto } from 'src/usuarios/dtos/usuarios-input.dto';
 import { UsuariosOutputType } from 'src/usuarios/types/usuarios-output.type';
 import { UsuariosRepository } from '../usuarios.repository';
 
@@ -36,7 +36,7 @@ export class PrismaUsuariosRepository implements UsuariosRepository {
     const where: Prisma.usuariosFindManyArgs['where'] = {};
 
     for (const key in filters) {
-      if (filters[key] !== 'page' && filters[key] !== 'perPage') {
+      if (key !== 'page' && key !== 'perPage') {
         where[key] = filters[key];
       }
     }
@@ -51,6 +51,9 @@ export class PrismaUsuariosRepository implements UsuariosRepository {
       Prisma.usuariosFindManyArgs
     >(this.usuariosService, {
       where,
+      include: {
+        contatos_wpp: true,
+      },
       orderBy: {
         id: 'desc',
       },

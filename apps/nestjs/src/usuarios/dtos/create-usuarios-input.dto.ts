@@ -1,4 +1,3 @@
-import { Transform } from 'class-transformer';
 import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateUsuariosInputDto {
@@ -16,6 +15,5 @@ export class CreateUsuariosInputDto {
 
   @IsBoolean()
   @IsOptional()
-  @Transform(({ value }) => (value === 'true' ? true : false))
   isAdmin?: boolean;
 }

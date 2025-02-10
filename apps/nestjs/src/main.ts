@@ -11,10 +11,17 @@ async function bootstrap() {
     ? ['error', 'warn', 'log']
     : ['error', 'warn', 'log', 'debug', 'verbose'];
 
-  // const app = await NestFactory.create(AppModule);
   const app = await NestFactory.create(AppModule, {
     logger: logLevels,
   });
+
+  // Enable CORS
+  app.enableCors({
+    origin: 'http://localhost:3004', // Allow requests from this origin
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  });
+
   const config = new DocumentBuilder()
     .setTitle('API Erik')
     .setDescription('API para integração direta')

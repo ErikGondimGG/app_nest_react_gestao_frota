@@ -32,7 +32,7 @@ export class PrismaTiposVeiculosRepository implements TiposVeiculosRepository {
     const where: Prisma.tipos_veiculosFindManyArgs['where'] = {};
 
     for (const key in filters) {
-      if (filters[key] !== 'page' && filters[key] !== 'perPage') {
+      if (key !== 'page' && key !== 'perPage') {
         where[key] = filters[key];
       }
     }
