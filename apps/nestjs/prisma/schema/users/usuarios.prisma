@@ -3,6 +3,7 @@ model usuarios {
   name            String
   email           String
   password        String
+  isAdmin         Boolean?
   created_at      DateTime  @default(now())
   updated_at      DateTime  @default(now())
   deleted_at      DateTime?

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUpdateTiposVeiculosInputDto } from '../dtos/create-update-tipos-veiculos-input.dto';
 import { TiposVeiculosRepository } from '../repositories/tipos-veiculos.repository';
-import { TiposVeiculosOutputDto } from '../types/tipos-veiculos-output.dto';
+import { TiposVeiculosOutputType } from '../types/tipos-veiculos-output.dto';
 
 interface IUpdateTiposVeiculosInputDto {
   id: number;
@@ -15,7 +15,7 @@ export class UpdateTiposVeiculosUseCase {
   async execute({
     id,
     updateTiposVeiculosInputDto,
-  }: IUpdateTiposVeiculosInputDto): Promise<TiposVeiculosOutputDto> {
+  }: IUpdateTiposVeiculosInputDto): Promise<TiposVeiculosOutputType> {
     const updatedRecord = await this.tiposVeiculosRepository.update(
       id,
       updateTiposVeiculosInputDto,

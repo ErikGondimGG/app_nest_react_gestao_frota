@@ -26,7 +26,7 @@ export class TiposVeiculosController {
     private readonly deleteTiposVeiculosUseCase: DeleteTiposVeiculosUseCase,
   ) {}
 
-  @Post()
+  @Post('/create')
   @ApiBody({
     type: CreateUpdateTiposVeiculosInputDto,
     description: 'Create a new tipos-veiculos',
@@ -49,7 +49,7 @@ export class TiposVeiculosController {
     return createdRecord;
   }
 
-  @Get()
+  @Get('/read')
   async read(@Query() tiposVeiculosInputDto: TiposVeiculosInputDto) {
     const readedRecords = await this.readTiposVeiculosUseCase.execute({
       tiposVeiculosInputDto,
@@ -58,7 +58,7 @@ export class TiposVeiculosController {
     return readedRecords;
   }
 
-  @Put(':id')
+  @Put('update/:id')
   async update(
     @Param('id') id: number,
     @Body() updateTiposVeiculosInputDto: CreateUpdateTiposVeiculosInputDto,
@@ -71,7 +71,7 @@ export class TiposVeiculosController {
     return updatedRecord;
   }
 
-  @Delete(':id')
+  @Delete('delete/:id')
   async delete(@Param('id') id: number) {
     const deletedRecord = await this.deleteTiposVeiculosUseCase.execute({ id });
 

@@ -1,18 +1,20 @@
 import { PaginatedResult } from 'prisma-pagination';
 import { TiposVeiculosInputDto } from '../dtos/tipos-veiculos-input.dto';
-import { TiposVeiculosOutputDto } from '../types/tipos-veiculos-output.dto';
+import { TiposVeiculosOutputType } from '../types/tipos-veiculos-output.dto';
 
 export abstract class TiposVeiculosRepository {
-  abstract create(data: TiposVeiculosInputDto): Promise<TiposVeiculosOutputDto>;
+  abstract create(
+    data: TiposVeiculosInputDto,
+  ): Promise<TiposVeiculosOutputType>;
 
   abstract read(
     filters: TiposVeiculosInputDto,
-  ): Promise<PaginatedResult<TiposVeiculosOutputDto>>;
+  ): Promise<PaginatedResult<TiposVeiculosOutputType>>;
 
   abstract update(
     id: number,
     data: TiposVeiculosInputDto,
-  ): Promise<TiposVeiculosOutputDto>;
+  ): Promise<TiposVeiculosOutputType>;
 
-  abstract delete(id: number): Promise<TiposVeiculosOutputDto>;
+  abstract delete(id: number): Promise<TiposVeiculosOutputType>;
 }

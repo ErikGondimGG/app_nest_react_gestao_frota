@@ -1,4 +1,4 @@
-export type TiposVeiculosOutputDto = {
+export type TiposVeiculosOutputType = {
   id?: number;
   descricao?: string;
   created_at?: Date;

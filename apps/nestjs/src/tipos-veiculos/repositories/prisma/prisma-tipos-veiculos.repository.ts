@@ -4,7 +4,7 @@ import { createPaginator, PaginatedResult } from 'prisma-pagination';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { getNewDateTime } from 'src/shared/utils/date-utils';
 import { TiposVeiculosInputDto } from 'src/tipos-veiculos/dtos/tipos-veiculos-input.dto';
-import { TiposVeiculosOutputDto } from 'src/tipos-veiculos/types/tipos-veiculos-output.dto';
+import { TiposVeiculosOutputType } from 'src/tipos-veiculos/types/tipos-veiculos-output.dto';
 import { TiposVeiculosRepository } from '../tipos-veiculos.repository';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class PrismaTiposVeiculosRepository implements TiposVeiculosRepository {
 
   private readonly prismaTiposVeiculos = this.prismaService.tipos_veiculos;
 
-  async create(data: TiposVeiculosInputDto): Promise<TiposVeiculosOutputDto> {
+  async create(data: TiposVeiculosInputDto): Promise<TiposVeiculosOutputType> {
     const resultedCreate = await this.prismaTiposVeiculos.create({
       data: {
         descricao: data.descricao,
@@ -28,7 +28,7 @@ export class PrismaTiposVeiculosRepository implements TiposVeiculosRepository {
 
   async read(
     filters: TiposVeiculosInputDto,
-  ): Promise<PaginatedResult<TiposVeiculosOutputDto>> {
+  ): Promise<PaginatedResult<TiposVeiculosOutputType>> {
     const where: Prisma.tipos_veiculosFindManyArgs['where'] = {};
 
     for (const key in filters) {
@@ -43,7 +43,7 @@ export class PrismaTiposVeiculosRepository implements TiposVeiculosRepository {
     });
 
     const resultedRecords = await paginate<
-      TiposVeiculosOutputDto,
+      TiposVeiculosOutputType,
       Prisma.tipos_veiculosFindManyArgs
     >(this.prismaTiposVeiculos, {
       where,
@@ -58,7 +58,7 @@ export class PrismaTiposVeiculosRepository implements TiposVeiculosRepository {
   async update(
     id: number,
     data: TiposVeiculosInputDto,
-  ): Promise<TiposVeiculosOutputDto> {
+  ): Promise<TiposVeiculosOutputType> {
     const resultedUpdate = await this.prismaTiposVeiculos.update({
       where: { id: id, deleted_at: null },
       data: {
@@ -71,7 +71,7 @@ export class PrismaTiposVeiculosRepository implements TiposVeiculosRepository {
     return resultedUpdate;
   }
 
-  async delete(id: number): Promise<TiposVeiculosOutputDto> {
+  async delete(id: number): Promise<TiposVeiculosOutputType> {
     const resultedDelete = await this.prismaTiposVeiculos.update({
       where: { id: id },
       data: {
