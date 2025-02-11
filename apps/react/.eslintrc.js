@@ -1,10 +1,12 @@
-module.exports = {
+export default {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2021,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
+      node: true,
+      commonjs: true,
     },
   },
   extends: [
@@ -17,12 +19,22 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:prettier/recommended',
   ],
-  rules: {
-    "no-use-before-define": "error",
-    "no-unused-vars": "error",
-    "indent": ["error", 2],
-    "react/react-in-jsx-scope": "off",
+  env: {
+    node: true,
   },
+  rules: {
+    '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+  },
+  'prettier/prettier': [
+    'error',
+    {},
+    {
+      usePrettierrc: false,
+    },
+  ],
   settings: {
     react: {
       version: 'detect',
