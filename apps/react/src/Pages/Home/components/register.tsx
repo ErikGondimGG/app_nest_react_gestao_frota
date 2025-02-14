@@ -1,5 +1,5 @@
-import { InteractiveHoverButton } from '@/Components/magicui/interactive-hover-button';
-import { ShinyButton } from '@/Components/magicui/shiny-button';
+import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button';
+import { ShinyButton } from '@/components/magicui/shiny-button';
 import {
   Form,
   FormControl,
@@ -8,17 +8,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/Components/ui/form';
-import { Input } from '@/Components/ui/input';
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/Components/ui/sheet';
+} from '@/components/ui/sheet';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { register } from '../services/auth/authService';
@@ -60,6 +59,7 @@ const RegisterSheet: React.FC = () => {
           <span className="text-xs">Registar</span>
         </ShinyButton>
       </SheetTrigger>
+
       <SheetContent side="right">
         <SheetHeader>
           <SheetTitle>Registrar</SheetTitle>
@@ -77,7 +77,9 @@ const RegisterSheet: React.FC = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nome de Usuário</FormLabel>
+                  <FormLabel className="dark:text-white">
+                    Nome de Usuário
+                  </FormLabel>
                   <FormControl>
                     <Input type="text" {...field} required />
                   </FormControl>
@@ -92,7 +94,7 @@ const RegisterSheet: React.FC = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="dark:text-white">Email</FormLabel>
                   <FormControl>
                     <Input type="email" {...field} required />
                   </FormControl>
@@ -107,7 +109,7 @@ const RegisterSheet: React.FC = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Senha</FormLabel>
+                  <FormLabel className="dark:text-white">Senha</FormLabel>
                   <FormControl>
                     <Input type="password" {...field} required />
                   </FormControl>
@@ -131,14 +133,11 @@ const RegisterSheet: React.FC = () => {
               )}
             />
 
-            <InteractiveHoverButton type="submit">
-              Comfirmar
+            <InteractiveHoverButton type="submit" className="text-black">
+              Confirmar
             </InteractiveHoverButton>
           </form>
         </Form>
-        <SheetClose className="absolute right-4 top-4">
-          <span className="sr-only">Close</span>
-        </SheetClose>
       </SheetContent>
     </Sheet>
   );

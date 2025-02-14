@@ -1,6 +1,6 @@
-import { BorderBeam } from '@/Components/magicui/border-beam';
-import { InteractiveHoverButton } from '@/Components/magicui/interactive-hover-button';
-import { Card } from '@/Components/ui/card';
+import { BorderBeam } from '@/components/magicui/border-beam';
+import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button';
+import { Card } from '@/components/ui/card';
 import {
   Form,
   FormControl,
@@ -9,13 +9,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/Components/ui/form';
-import { Input } from '@/Components/ui/input';
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { useAuthStore } from '@/stores/auth.store';
 import { useForm } from 'react-hook-form';
 import { login } from '../services/auth/authService';
 import RegisterSheet from './register';
 
 export default function Login() {
+  const { auth } = useAuthStore();
+
   const form = useForm({
     defaultValues: {
       email: '',
@@ -24,18 +27,11 @@ export default function Login() {
   });
 
   const onSubmit = async (data: { email: string; password: string }) => {
-    const auth = await login(data.email, data.password);
-    alert(auth.message);
-
-    if (auth.token) {
-      localStorage.setItem('token', auth.token);
-      // Redirect to the dashboard or another page
-      window.location.href = '/dashboard';
-    }
+    await login(data.email, data.password, { auth });
   };
 
   return (
-    <Card className="flex relative flex-col gap-6 items-center justify-center w-[300px] h-[400px] py-6">
+    <Card className="flex relative flex-col gap-6 items-center justify-center w-full h-full py-20 overflow-hidden shadow-md">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
@@ -67,13 +63,14 @@ export default function Login() {
               </FormItem>
             )}
           />
-
-          <InteractiveHoverButton type="submit">Login</InteractiveHoverButton>
-          <RegisterSheet />
+          <div className="grid grid-cols-2">
+            <InteractiveHoverButton type="submit">Login</InteractiveHoverButton>
+            <RegisterSheet />
+          </div>
         </form>
       </Form>
 
-      <BorderBeam duration={3} colorTo="#000000" colorFrom="#00ffaa" />
+      <BorderBeam duration={18} colorTo="#000000" colorFrom="#00ffaa" />
     </Card>
   );
 }

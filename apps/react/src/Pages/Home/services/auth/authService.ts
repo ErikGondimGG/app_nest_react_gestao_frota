@@ -1,10 +1,11 @@
+import { AuthState } from '@/stores/auth.store';
 import axios from 'axios';
-import { Login } from '../../../../Types/User';
 
 export const login = async (
   email: string,
-  password: string
-): Promise<Login> => {
+  password: string,
+  { auth }: AuthState
+) => {
   // console.log(import.meta.env.VITE_API_URL);
 
   const url = `${import.meta.env.VITE_API_URL}/auth/login`;
@@ -13,7 +14,21 @@ export const login = async (
 
   console.log(response.data);
 
-  return response.data;
+  const { accessToken } = response.data.token;
+
+  if (!accessToken) {
+    alert(response.data.message);
+  }
+
+  const user = {
+    name: null,
+    email: email,
+  };
+
+  auth.setUser(user);
+  auth.setAccessToken(accessToken);
+
+  window.location.href = '/dashboard';
 };
 
 export const register = async (

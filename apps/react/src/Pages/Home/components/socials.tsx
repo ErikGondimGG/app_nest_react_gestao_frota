@@ -2,24 +2,18 @@
 
 import React from 'react';
 
-import { Dock, DockIcon } from '@/Components/magicui/dock';
+import { Dock, DockIcon } from '@/components/magicui/dock';
+import { buttonVariants } from '@/components/ui/button';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+import { cn } from '@/lib/utils';
+import { MailIcon } from 'lucide-react';
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
-
-export function DockDemo() {
-  return (
-    <div className="relative">
-      <Dock direction="middle">
-        <DockIcon>
-          <Icons.gitHub className="size-6" />
-        </DockIcon>
-        <DockIcon>
-          <Icons.linkedIn className="size-6" />
-        </DockIcon>
-      </Dock>
-    </div>
-  );
-}
 
 const Icons = {
   gitHub: (props: IconProps) => (
@@ -31,14 +25,69 @@ const Icons = {
     </svg>
   ),
   linkedIn: (props: IconProps) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      {...props}
-    >
-      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <title>LinkedIn</title>
+      <path
+        fill="currentColor"
+        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+      />
     </svg>
   ),
+  email: (props: IconProps) => <MailIcon {...props} />,
 };
+
+const DATA = {
+  contact: {
+    social: {
+      GitHub: {
+        name: 'GitHub',
+        url: 'https://github.com/ErikGondimGG',
+        icon: Icons.gitHub,
+      },
+      LinkedIn: {
+        name: 'LinkedIn',
+        url: 'https://linkedin.com/in/eriktulio',
+        icon: Icons.linkedIn,
+      },
+      Email: {
+        name: 'Email',
+        url: 'mailto:eriktuliosousa.g@gmail.com',
+        icon: Icons.email,
+      },
+    },
+  },
+};
+
+export function DockSocials() {
+  return (
+    <div className="flex flex-col items-center justify-center">
+      <TooltipProvider>
+        <Dock direction="middle" className="dark:bg-neutral-950 border-2">
+          {Object.entries(DATA.contact.social).map(([name, social]) => (
+            <DockIcon key={name}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a
+                    href={social.url}
+                    aria-label={social.name}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      buttonVariants({ variant: 'ghost', size: 'icon' }),
+                      'size-12 rounded-full'
+                    )}
+                  >
+                    <social.icon className="size-6 text-gray-900 dark:text-white" />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{name}</p>
+                </TooltipContent>
+              </Tooltip>
+            </DockIcon>
+          ))}
+        </Dock>
+      </TooltipProvider>
+    </div>
+  );
+}
