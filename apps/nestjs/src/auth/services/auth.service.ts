@@ -28,7 +28,10 @@ export class AuthService {
     });
 
     if (user?.meta?.total === 0 || !user?.data || user?.data?.length === 0) {
-      return { message: 'Email ou senha inválidos.' };
+      return {
+        message:
+          'Email ou senha inválidos, verifique seus dados e tente novamente.',
+      };
     }
 
     // Criar string no formato "email + senha"
@@ -41,7 +44,10 @@ export class AuthService {
     );
 
     if (!isPasswordValid) {
-      return { message: 'Email ou senha inválidos.' };
+      return {
+        message:
+          'Email ou senha inválidos, Verifique seus dados e tente novamente.',
+      };
     }
 
     // Gerar token JWT
