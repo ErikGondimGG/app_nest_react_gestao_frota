@@ -24,12 +24,12 @@ const data = {
       url: '#',
       items: [
         {
-          title: 'Listagem',
-          url: '#',
+          title: 'Dashboard',
+          url: '/veiculos/dashboard',
         },
         {
-          title: 'Cadastros',
-          url: '#',
+          title: 'Cadastrar',
+          url: '/veiculos/cadastrar',
         },
         {
           title: 'Tipos',

@@ -4,7 +4,8 @@ import Navbar from './components/Navbar';
 import { ThemeProvider } from './components/themes/theme-provider';
 import About from './pages/About';
 import Home from './pages/Home';
-import DashboardIndex from './pages/dashboard/index';
+import VehicleRegisterIndex from './pages/veiculos/cadastrar';
+import DashboardIndex from './pages/veiculos/dashboard/index';
 import { useAuthStore } from './stores/auth.store';
 
 const App: React.FC = () => {
@@ -17,7 +18,11 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/dashboard" element={<DashboardIndex />} />
+            <Route path="/veiculos/dashboard" element={<DashboardIndex />} />
+            <Route
+              path="/veiculos/cadastrar"
+              element={<VehicleRegisterIndex />}
+            />
           </Routes>
         </BrowserRouter>
       </Provider>

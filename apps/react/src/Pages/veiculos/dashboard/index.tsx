@@ -8,8 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import React from 'react';
+import { AppSidebar } from '../../../components/sidebar/app-sidebar';
 import DashboardGrid from './components/cardsGrid';
-import { AppSidebar } from './components/sidebar/app-sidebar';
 
 const dashboardIndex: React.FC = () => {
   const [open, setOpen] = React.useState(false);

@@ -18,9 +18,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import { useAuth } from '@/hooks/use-auth';
+import { LoaderCircle } from 'lucide-react';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
-import { register } from '../services/auth/authService';
 
 const RegisterSheet: React.FC = () => {
   const form = useForm<{
@@ -36,6 +37,7 @@ const RegisterSheet: React.FC = () => {
       passwordConfirmation: '',
     },
   });
+  const { register, loading } = useAuth();
 
   const onSubmit = async (data: {
     name: string;
@@ -133,7 +135,11 @@ const RegisterSheet: React.FC = () => {
             />
 
             <InteractiveHoverButton type="submit" className="text-black">
-              Confirmar
+              {loading ? (
+                <LoaderCircle className="animate-spin" />
+              ) : (
+                'Registrar'
+              )}
             </InteractiveHoverButton>
           </form>
         </Form>
