@@ -11,15 +11,17 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useAuth } from '@/hooks/use-auth';
 import { useAuthStore } from '@/stores/auth.store';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'; // Ajuste para a versão 2
+import { LoaderCircle } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { login } from '../services/auth/authService';
 import RegisterSheet from './register';
 
 export default function Login() {
   const { auth } = useAuthStore();
+  const { login, loading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm({
@@ -34,9 +36,9 @@ export default function Login() {
   };
 
   return (
-    <Card className="flex relative flex-col gap-6 items-center justify-center w-full py-16 overflow-hidden shadow-lg">
+    <Card className="flex relative flex-col gap-6 items-center justify-center py-16 overflow-hidden shadow-lg">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 ">
           <FormField
             control={form.control}
             name="email"
@@ -84,8 +86,12 @@ export default function Login() {
             )}
           />
 
-          <div className="grid grid-cols-2 gap-1">
-            <InteractiveHoverButton type="submit">Login</InteractiveHoverButton>
+          <div className="grid grid-cols-2 gap-1 w-full">
+            <InteractiveHoverButton type="submit" className="flex w-full">
+              <span className="w-full">
+                {loading ? <LoaderCircle className="animate-spin" /> : 'Login'}
+              </span>
+            </InteractiveHoverButton>
             <RegisterSheet />
           </div>
         </form>
