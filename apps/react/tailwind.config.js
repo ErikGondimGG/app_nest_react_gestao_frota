@@ -248,7 +248,7 @@ module.exports = {
         'shimmer-slide':
           'shimmer-slide var(--speed) ease-in-out infinite alternate',
         'spin-around': 'spin-around calc(var(--speed) * 2) infinite linear',
-        pulse: 'pulse var(--duration) ease-out infinite',
+        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         rippling: 'rippling var(--duration) ease-out',
         grid: 'grid 15s linear infinite',
         ripple: 'ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite',

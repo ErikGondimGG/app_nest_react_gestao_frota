@@ -12,12 +12,15 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useAuthStore } from '@/stores/auth.store';
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'; // Ajuste para a versão 2
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { login } from '../services/auth/authService';
 import RegisterSheet from './register';
 
 export default function Login() {
   const { auth } = useAuthStore();
+  const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm({
     defaultValues: {
@@ -31,7 +34,7 @@ export default function Login() {
   };
 
   return (
-    <Card className="flex relative flex-col gap-6 items-center justify-center w-full h-full py-20 overflow-hidden shadow-md">
+    <Card className="flex relative flex-col gap-6 items-center justify-center w-full py-16 overflow-hidden shadow-lg">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
@@ -55,15 +58,33 @@ export default function Login() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Senha</FormLabel>
-                <FormControl>
-                  <Input type="password" {...field} required />
+                <FormControl className="relative">
+                  <div className="relative">
+                    <Input
+                      type={showPassword ? 'text' : 'password'}
+                      {...field}
+                      required
+                    />
+                    <button
+                      type="button"
+                      className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? (
+                        <EyeIcon className="h-5 w-5 text-black dark:text-" />
+                      ) : (
+                        <EyeSlashIcon className="h-5 w-5 text-black dark:text-white" />
+                      )}
+                    </button>
+                  </div>
                 </FormControl>
                 <FormDescription>Informe sua senha.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <div className="grid grid-cols-2">
+
+          <div className="grid grid-cols-2 gap-1">
             <InteractiveHoverButton type="submit">Login</InteractiveHoverButton>
             <RegisterSheet />
           </div>

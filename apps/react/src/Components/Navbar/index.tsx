@@ -12,7 +12,7 @@ function Navbar() {
   const { setTheme } = useTheme();
 
   return (
-    <div className="fixed top-0 left-0 right-0 bg-transparent px-2 pt-2 flex justify-end z-50">
+    <div className="absolute top-0 right-0 bg-transparent px-2 pt-2 flex justify-end z-50">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon" className="rounded-full">

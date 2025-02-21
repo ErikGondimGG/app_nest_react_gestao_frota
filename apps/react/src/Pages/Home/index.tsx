@@ -14,7 +14,7 @@ function Home() {
         )}
         squaresClassName="dark:hover:fill-green-800 hover:fill-green-200"
       />
-      <div className="relative flex w-full max-w-sm flex-col gap-2">
+      <div className="relative flex w-full max-w-sm  flex-col gap-2">
         <a
           href="#"
           className="flex items-center gap-2 self-center font-medium dark:text-white"
@@ -26,8 +26,9 @@ function Home() {
         </a>
         <Login />
         <div className="pointer-events-none h-fit w-fit text-balance text-center text-xs dark:text-white text-muted-foreground [&_a]:pointer-events-auto [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary">
-          By clicking continue, you agree to our{' '}
-          <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+          Ao clicar em Login, você concordará com os{' '}
+          <a href="#">Termos de Serviço</a> e{' '}
+          <a href="#">Política de Privacidade</a>.
         </div>
         <div className="flex items-center justify-center ">
           <DockSocials />

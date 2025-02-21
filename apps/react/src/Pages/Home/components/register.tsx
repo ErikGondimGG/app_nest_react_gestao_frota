@@ -55,11 +55,10 @@ const RegisterSheet: React.FC = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <ShinyButton className="rounded-full flex h-fit">
+        <ShinyButton className="rounded-full flex h-full">
           <span className="text-xs">Registar</span>
         </ShinyButton>
       </SheetTrigger>
-
       <SheetContent side="right">
         <SheetHeader>
           <SheetTitle>Registrar</SheetTitle>

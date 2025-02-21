@@ -12,13 +12,14 @@ export const login = async (
 
   const response = await axios.post(url, { email, password });
 
-  console.log(response.data);
+  // console.log(response.data);
+
+  if (!response.data.token) {
+    alert(response.data.message);
+    return;
+  }
 
   const { accessToken } = response.data.token;
-
-  if (!accessToken) {
-    alert(response.data.message);
-  }
 
   const user = {
     name: null,
@@ -27,6 +28,8 @@ export const login = async (
 
   auth.setUser(user);
   auth.setAccessToken(accessToken);
+
+  alert(response.data.message);
 
   window.location.href = '/dashboard';
 };
