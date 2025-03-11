@@ -112,14 +112,14 @@ export class CreateUpdateVeiculosInputDto {
   })
   capacidade_carga?: number;
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
   @Transform(({ value }) => {
-    if (typeof value === 'string') {
-      return parseInt(value, 10);
+    if (typeof value !== 'string') {
+      return value.trim();
     }
 
     return value;
   })
-  tipo_veiculo_id?: number;
+  tipo?: string;
 }

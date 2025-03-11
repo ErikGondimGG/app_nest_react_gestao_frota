@@ -1,4 +1,4 @@
-export type VeiculosOutputType = {
+export type Veiculo = {
   id?: number;
   placa?: string;
   marca?: string;

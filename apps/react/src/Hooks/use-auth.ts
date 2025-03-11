@@ -36,7 +36,7 @@ export const useAuth = () => {
       auth.setAccessToken(accessToken);
 
       alert(response.data.message);
-      window.location.href = '/veiculos/dashboard';
+      window.location.href = '/app/veiculos/dashboard';
     } catch (err) {
       setError((err as any).message);
     } finally {

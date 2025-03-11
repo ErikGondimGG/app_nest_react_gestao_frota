@@ -19,8 +19,10 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { useAuth } from '@/hooks/use-auth';
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import { LoaderCircle } from 'lucide-react';
 import * as React from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const RegisterSheet: React.FC = () => {
@@ -38,6 +40,7 @@ const RegisterSheet: React.FC = () => {
     },
   });
   const { register, loading } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async (data: {
     name: string;
@@ -70,6 +73,7 @@ const RegisterSheet: React.FC = () => {
         </SheetHeader>
         <Form {...form}>
           <form
+            id="register-form"
             onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-6 pt-6"
           >
@@ -82,7 +86,12 @@ const RegisterSheet: React.FC = () => {
                     Nome de Usuário
                   </FormLabel>
                   <FormControl>
-                    <Input type="text" {...field} required />
+                    <Input
+                      type="text"
+                      className="dark:text-white"
+                      {...field}
+                      required
+                    />
                   </FormControl>
                   <FormDescription>Informe seu nome.</FormDescription>
                   <FormMessage />
@@ -97,7 +106,12 @@ const RegisterSheet: React.FC = () => {
                 <FormItem>
                   <FormLabel className="dark:text-white">Email</FormLabel>
                   <FormControl>
-                    <Input type="email" {...field} required />
+                    <Input
+                      type="email"
+                      className="dark:text-white"
+                      {...field}
+                      required
+                    />
                   </FormControl>
                   <FormDescription>Informe seu email.</FormDescription>
                   <FormMessage />
@@ -112,7 +126,25 @@ const RegisterSheet: React.FC = () => {
                 <FormItem>
                   <FormLabel className="dark:text-white">Senha</FormLabel>
                   <FormControl>
-                    <Input type="password" {...field} required />
+                    <div className="relative">
+                      <Input
+                        type={showPassword ? 'text' : 'password'}
+                        className="dark:text-white"
+                        {...field}
+                        required
+                      />
+                      <button
+                        type="button"
+                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? (
+                          <EyeIcon className="h-5 w-5 text-black dark:text-white" />
+                        ) : (
+                          <EyeSlashIcon className="h-5 w-5 text-black dark:text-white" />
+                        )}
+                      </button>
+                    </div>
                   </FormControl>
                   <FormDescription>Crie uma senha.</FormDescription>
                   <FormMessage />
@@ -126,7 +158,25 @@ const RegisterSheet: React.FC = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input type="password" {...field} required />
+                    <div className="relative">
+                      <Input
+                        type={showPassword ? 'text' : 'password'}
+                        className="dark:text-white"
+                        {...field}
+                        required
+                      />
+                      <button
+                        type="button"
+                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? (
+                          <EyeIcon className="h-5 w-5 text-black dark:text-white" />
+                        ) : (
+                          <EyeSlashIcon className="h-5 w-5 text-black dark:text-white" />
+                        )}
+                      </button>
+                    </div>
                   </FormControl>
                   <FormDescription>Confirme sua senha.</FormDescription>
                   <FormMessage />
@@ -134,7 +184,11 @@ const RegisterSheet: React.FC = () => {
               )}
             />
 
-            <InteractiveHoverButton type="submit" className="text-black">
+            <InteractiveHoverButton
+              type="submit"
+              form="register-form"
+              className="text-black"
+            >
               {loading ? (
                 <LoaderCircle className="animate-spin" />
               ) : (
