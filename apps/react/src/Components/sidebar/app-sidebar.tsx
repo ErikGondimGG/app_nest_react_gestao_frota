@@ -1,7 +1,6 @@
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -11,9 +10,8 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from '@/components/ui/sidebar';
-import { ReceiptRefundIcon } from '@heroicons/react/24/outline';
 import * as React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { SearchForm } from './search-form';
 import { VersionSwitcher } from './version-switcher';
 
@@ -33,6 +31,75 @@ const data = {
         {
           title: 'Cadastrar',
           url: '/app/veiculos/cadastrar',
+          isActive: false,
+        },
+      ],
+    },
+    {
+      title: 'Ordens de Serviço',
+      url: '#',
+      items: [
+        {
+          title: 'Consultar',
+          url: '/app/ordens-de-servico/consultar',
+          isActive: false,
+        },
+        {
+          title: 'Cadastrar',
+          url: '/app/ordens-de-servico/cadastrar',
+          isActive: false,
+        },
+      ],
+    },
+    {
+      title: 'Ordens de Manutenção',
+      url: '#',
+      items: [
+        {
+          title: 'Consultar',
+          url: '/app/ordens-de-manutencao/consultar',
+          isActive: false,
+        },
+        {
+          title: 'Cadastrar',
+          url: '/app/ordens-de-manutencao/cadastrar',
+          isActive: false,
+        },
+      ],
+    },
+    {
+      title: 'Agendamentos',
+      url: '#',
+      items: [
+        {
+          title: 'Consultar',
+          url: '/app/agendamentos/consultar',
+          isActive: false,
+        },
+        {
+          title: 'Cadastrar',
+          url: '/app/agendamentos/cadastrar',
+          isActive: false,
+        },
+      ],
+    },
+    {
+      title: 'Usuário',
+      url: '#',
+      items: [
+        {
+          title: 'Perfil',
+          url: '/app/pecas/consultar',
+          isActive: false,
+        },
+        {
+          title: 'Contatos',
+          url: '/app/pecas/cadastrar',
+          isActive: false,
+        },
+        {
+          title: 'Sair',
+          url: '/',
           isActive: false,
         },
       ],
@@ -68,11 +135,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarGroupContent>
           </SidebarGroup>
         ))}
-        <SidebarFooter>
-          <NavLink to="/" className={'rounded-full'}>
-            <ReceiptRefundIcon className="h-6 w-6" />
-          </NavLink>
-        </SidebarFooter>
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
