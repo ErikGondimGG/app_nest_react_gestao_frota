@@ -14,8 +14,6 @@ const DashboardGrid: React.FC<DashboardGridProps> = ({ open }) => {
     getVeiculos();
   }, []);
 
-  console.log(veiculos);
-
   return (
     <div
       className={`grid overflow-visible transition-all duration-700 ease-in-out ${

@@ -3,6 +3,7 @@ import { ShineBorder } from '@/components/magicui/shine-border';
 import { cn } from '@/lib/utils';
 import { Veiculo } from '@/types/veiculo';
 import { ExternalLinkIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface VeiculoCardProps {
   veiculo: Veiculo;
@@ -34,11 +35,7 @@ const VeiculoCard: React.FC<VeiculoCardProps> = ({ veiculo, open }) => {
           <p className="mt-1 text-sm text-gray-500">{veiculo.cor}</p>
           <div className="mt-auto flex justify-between items-center">
             <span className="text-sm font-medium">Status: {veiculo.km} km</span>
-            <a
-              href={`/veiculos/detalhes/${veiculo.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link to={`/app/veiculos/${veiculo.id}`}>
               <div
                 className={cn(
                   'group rounded-full border border-black/5 bg-neutral-100 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800 '
@@ -49,7 +46,7 @@ const VeiculoCard: React.FC<VeiculoCardProps> = ({ veiculo, open }) => {
                   <ExternalLinkIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </AnimatedShinyText>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </ShineBorder>

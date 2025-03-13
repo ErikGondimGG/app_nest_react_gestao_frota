@@ -5,9 +5,9 @@ import Sidebar from './components/sidebar/sidebar'; // Importe a Sidebar
 import { ThemeProvider } from './components/themes/theme-provider';
 import About from './pages/About';
 import Home from './pages/Home';
+import VehicleDetail from './pages/veiculos/[detalhes]/[id]';
 import VehicleRegisterIndex from './pages/veiculos/cadastrar';
 import DashboardIndex from './pages/veiculos/dashboard/index';
-import VehicleDetail from './pages/veiculos/detalhes/[id]';
 import { useAuthStore } from './stores/auth.store';
 
 const App: React.FC = () => {
@@ -26,7 +26,7 @@ const App: React.FC = () => {
                 path="veiculos/cadastrar"
                 element={<VehicleRegisterIndex />}
               />
-              <Route path="veiculos/detalhes/:id" element={<VehicleDetail />} />
+              <Route path="veiculos/:id" element={<VehicleDetail />} />
             </Route>
           </Routes>
         </BrowserRouter>

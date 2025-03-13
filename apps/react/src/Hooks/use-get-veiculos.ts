@@ -22,7 +22,7 @@ export function useGetVeiculos() {
   const getVeiculos = async (id?: string) => {
     setLoading(true);
     setError(null);
-    await sleep(3000);
+    await sleep(2000);
 
     try {
       const response = await axios.get(

@@ -26,8 +26,6 @@ export const useCadastrarVeiculo = () => {
     setLoading(true);
     setError(null);
 
-    // console.log(veiculo);
-
     try {
       const response = await axios.post(`${apiUrl}/veiculos/create`, veiculo);
 
