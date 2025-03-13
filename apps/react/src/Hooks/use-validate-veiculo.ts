@@ -59,9 +59,9 @@ export const useValidate = () => {
           return 'Capacidade de carga deve ser maior ou igual a 0';
         }
       },
-      tipo_veiculo_id: (value: number) => {
-        if (value < 0) {
-          return 'Tipo de veículo inválido';
+      tipo: (value: string) => {
+        if (value.length < 2) {
+          return 'Tipo deve ter no mínimo 2 caracteres';
         }
       },
     };

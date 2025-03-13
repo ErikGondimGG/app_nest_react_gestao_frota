@@ -13,13 +13,14 @@ type Veiculo = {
   km: number;
   hr: number;
   capacidade_carga: number;
-  tipo_veiculo_id: number;
+  tipo: string;
 };
 
 export const useCadastrarVeiculo = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<any>(null);
+  const [success, setSuccess] = useState(false);
 
   const cadastrar = async (veiculo: Veiculo) => {
     setLoading(true);
@@ -29,6 +30,7 @@ export const useCadastrarVeiculo = () => {
       const response = await axios.post(`${apiUrl}/veiculos/create`, veiculo);
 
       setData(response.data);
+      setSuccess(true);
     } catch (error) {
       console.error(error);
 
@@ -42,5 +44,5 @@ export const useCadastrarVeiculo = () => {
     }
   };
 
-  return { cadastrar, loading, error, data };
+  return { cadastrar, loading, error, data, success };
 };

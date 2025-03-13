@@ -29,7 +29,7 @@ export class PrismaVeiculosRepository implements VeiculosRepository {
         km: data.km,
         hr: data.hr,
         capacidade_carga: data.capacidade_carga,
-        tipo_veiculo_id: data.tipo_veiculo_id,
+        tipo: data.tipo,
         created_at: getNewDateTime(),
         updated_at: getNewDateTime(),
         deleted_at: null,
@@ -60,9 +60,6 @@ export class PrismaVeiculosRepository implements VeiculosRepository {
       Prisma.veiculosFindManyArgs
     >(this.prismaVeiculos, {
       where,
-      include: {
-        tipos_veiculos: true,
-      },
       orderBy: {
         id: 'desc',
       },
@@ -88,7 +85,7 @@ export class PrismaVeiculosRepository implements VeiculosRepository {
         km: data.km,
         hr: data.hr,
         capacidade_carga: data.capacidade_carga,
-        tipo_veiculo_id: data.tipo_veiculo_id,
+        tipo: data.tipo,
         updated_at: getNewDateTime(),
         deleted_at: data.deleted_at,
       },

@@ -38,7 +38,11 @@ export default function Login() {
   return (
     <Card className="flex relative flex-col gap-6 items-center justify-center py-16 overflow-hidden shadow-lg">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 ">
+        <form
+          id="login-form"
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-6 "
+        >
           <FormField
             control={form.control}
             name="email"
@@ -73,7 +77,7 @@ export default function Login() {
                       onClick={() => setShowPassword(!showPassword)}
                     >
                       {showPassword ? (
-                        <EyeIcon className="h-5 w-5 text-black dark:text-" />
+                        <EyeIcon className="h-5 w-5 text-black dark:text-white" />
                       ) : (
                         <EyeSlashIcon className="h-5 w-5 text-black dark:text-white" />
                       )}
@@ -87,7 +91,11 @@ export default function Login() {
           />
 
           <div className="grid grid-cols-2 gap-1 w-full">
-            <InteractiveHoverButton type="submit" className="flex w-full">
+            <InteractiveHoverButton
+              type="submit"
+              form="login-form"
+              className="flex w-full"
+            >
               <span className="w-full">
                 {loading ? <LoaderCircle className="animate-spin" /> : 'Login'}
               </span>

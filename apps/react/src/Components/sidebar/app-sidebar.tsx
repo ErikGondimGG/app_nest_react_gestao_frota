@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import {
   Sidebar,
   SidebarContent,
@@ -12,6 +10,8 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from '@/components/ui/sidebar';
+import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { SearchForm } from './search-form';
 import { VersionSwitcher } from './version-switcher';
 
@@ -25,126 +25,82 @@ const data = {
       items: [
         {
           title: 'Dashboard',
-          url: '/veiculos/dashboard',
+          url: '/app/veiculos/dashboard',
+          isActive: false,
         },
         {
           title: 'Cadastrar',
-          url: '/veiculos/cadastrar',
-        },
-        {
-          title: 'Tipos',
-          url: '#',
+          url: '/app/veiculos/cadastrar',
+          isActive: false,
         },
       ],
     },
     {
-      title: 'Building Your Application',
+      title: 'Ordens de Serviço',
       url: '#',
       items: [
         {
-          title: 'Routing',
-          url: '#',
+          title: 'Consultar',
+          url: '/app/ordens-de-servico/consultar',
+          isActive: false,
         },
         {
-          title: 'Data Fetching',
-          url: '#',
-          isActive: true,
-        },
-        {
-          title: 'Rendering',
-          url: '#',
-        },
-        {
-          title: 'Caching',
-          url: '#',
-        },
-        {
-          title: 'Styling',
-          url: '#',
-        },
-        {
-          title: 'Optimizing',
-          url: '#',
-        },
-        {
-          title: 'Configuring',
-          url: '#',
-        },
-        {
-          title: 'Testing',
-          url: '#',
-        },
-        {
-          title: 'Authentication',
-          url: '#',
-        },
-        {
-          title: 'Deploying',
-          url: '#',
-        },
-        {
-          title: 'Upgrading',
-          url: '#',
-        },
-        {
-          title: 'Examples',
-          url: '#',
+          title: 'Cadastrar',
+          url: '/app/ordens-de-servico/cadastrar',
+          isActive: false,
         },
       ],
     },
     {
-      title: 'API Reference',
+      title: 'Ordens de Manutenção',
       url: '#',
       items: [
         {
-          title: 'Components',
-          url: '#',
+          title: 'Consultar',
+          url: '/app/ordens-de-manutencao/consultar',
+          isActive: false,
         },
         {
-          title: 'File Conventions',
-          url: '#',
-        },
-        {
-          title: 'Functions',
-          url: '#',
-        },
-        {
-          title: 'next.config.js Options',
-          url: '#',
-        },
-        {
-          title: 'CLI',
-          url: '#',
-        },
-        {
-          title: 'Edge Runtime',
-          url: '#',
+          title: 'Cadastrar',
+          url: '/app/ordens-de-manutencao/cadastrar',
+          isActive: false,
         },
       ],
     },
     {
-      title: 'Architecture',
+      title: 'Agendamentos',
       url: '#',
       items: [
         {
-          title: 'Accessibility',
-          url: '#',
+          title: 'Consultar',
+          url: '/app/agendamentos/consultar',
+          isActive: false,
         },
         {
-          title: 'Fast Refresh',
-          url: '#',
+          title: 'Cadastrar',
+          url: '/app/agendamentos/cadastrar',
+          isActive: false,
+        },
+      ],
+    },
+    {
+      title: 'Usuário',
+      url: '#',
+      items: [
+        {
+          title: 'Perfil',
+          url: '/app/pecas/consultar',
+          isActive: false,
         },
         {
-          title: 'Next.js Compiler',
-          url: '#',
+          title: 'Contatos',
+          url: '/app/pecas/cadastrar',
+          isActive: false,
         },
         {
-          title: 'Supported Browsers',
-          url: '#',
-        },
-        {
-          title: 'Turbopack',
-          url: '#',
+          title: 'Sair',
+          url: '/',
+          isActive: false,
         },
       ],
     },
@@ -171,7 +127,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 {item.items.map(item => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild isActive={item.isActive}>
-                      <a href={item.url}>{item.title}</a>
+                      <Link to={item.url}>{item.title}</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}

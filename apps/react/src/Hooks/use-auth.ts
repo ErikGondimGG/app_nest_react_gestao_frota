@@ -36,7 +36,7 @@ export const useAuth = () => {
       auth.setAccessToken(accessToken);
 
       alert(response.data.message);
-      window.location.href = '/veiculos/dashboard';
+      window.location.href = '/app/veiculos/dashboard';
     } catch (err) {
       setError((err as any).message);
     } finally {
@@ -52,7 +52,6 @@ export const useAuth = () => {
       const url = `${apiUrl}/auth/register`;
       const response = await axios.post(url, { name, email, password });
 
-      console.log(response.data);
       return response.data;
     } catch (err) {
       setError((err as any).message);

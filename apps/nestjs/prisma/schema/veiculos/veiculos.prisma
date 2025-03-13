@@ -10,12 +10,10 @@ model veiculos {
   km               Int?
   hr               Int?
   capacidade_carga Int?
-  tipo_veiculo_id  Int       @default(0)
+  tipo             String?
   created_at       DateTime  @default(now())
   updated_at       DateTime  @default(now())
   deleted_at       DateTime?
-
-  tipos_veiculos tipos_veiculos @relation(fields: [tipo_veiculo_id], references: [id])
 
   @@map("veiculos")
   @@schema("Base api_bot_wpp")
